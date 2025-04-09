@@ -32,7 +32,7 @@
 ### ✅ Frontend:
 
 - HTML & CSS (rendered via Thymeleaf)
-- Pure Thymeleaf — **no JavaScript used**
+- Pure Thymeleaf 
 - Responsive layout with Flexbox
 - Movie data rendered dynamically from backend
 
