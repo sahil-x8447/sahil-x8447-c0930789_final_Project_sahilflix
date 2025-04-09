@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Welcome to SahilFlix</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #111;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    .logo {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #e50914;
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      color: #ccc;
+      margin-bottom: 20px;
+    }
+
+    .name-highlight {
+      color: #e50914;
+      font-weight: bold;
+    }
+
+    .button {
+      margin-top: 30px;
+      padding: 12px 24px;
+      background-color: #e50914;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .button:hover {
+      background-color: #c40812;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 10px;
+      font-size: 0.85rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+<div class="logo">Welcome to SahilFlix 🎬</div>
+<p class="tagline">
+  Hello, <span th:text="${name}" class="name-highlight">Sahil</span>!
+  <br>This platform was crafted with love, popcorn, and Spring Boot.
+</p>
+
+<!-- ✅ Redirects to Thymeleaf home page now -->
+<a class="button" href="/home">Enter the Movie World 🍿</a>
+
+<footer>Powered by Java Spring Boot • TMDb API • Thymeleaf</footer>
+
+</body>
+</html>

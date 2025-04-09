@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Favorite Movies ❤️</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="logo" onclick="window.location.href='/home'">SahilFlix</div>
+  <div class="nav-links">
+    <a href="/home">Trending</a>
+    <a href="/favorites">Favorites</a>
+  </div>
+</nav>
+
+<header style="text-align: center; padding: 1rem;">
+  <h1>Your Favorite Movies</h1>
+</header>
+
+<main>
+  <section class="movie-grid">
+    <div class="movie-card" th:each="movie : ${favorites}">
+      <img th:src="'https://image.tmdb.org/t/p/w500' + ${movie.posterPath}" th:alt="${movie.title}" />
+      <h3 th:text="${movie.title}"></h3>
+      <p>
+        ⭐ <span th:text="${movie.voteAverage}"></span> |
+        <span th:text="${movie.releaseDate}"></span>
+      </p>
+
+      <form th:action="@{/favorites/remove/{id}(id=${movie.id})}" method="post">
+        <button type="submit">❌ Remove</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SahilFlix 🎬</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<nav class="navbar">
+  <div class="logo"><a href="/home" style="text-decoration: none; color: inherit;">SahilFlix</a></div>
+  <div class="nav-links">
+    <a href="/home">Trending</a>
+    <a href="/favorites">Favorites</a>
+  </div>
+</nav>
+
+<header>
+  <form th:action="@{/home}" method="get">
+    <input type="text" name="query" placeholder="Search movies..." />
+    <button type="submit">Search</button>
+  </form>
+</header>
+
+<main>
+  <section class="movie-grid">
+    <div class="movie-card" th:each="movie : ${movies}">
+
+      <!-- ✅ Clickable image to go to detail page -->
+      <a th:href="@{/movie/{id}(id=${movie.id})}">
+        <img th:src="'https://image.tmdb.org/t/p/w500' + ${movie.posterPath}" th:alt="${movie.title}" />
+      </a>
+
+      <!-- ✅ Clickable title to go to detail page -->
+      <h3>
+        <a th:href="@{/movie/{id}(id=${movie.id})}" th:text="${movie.title}" style="text-decoration: none; color: inherit;"></a>
+      </h3>
+
+      <p>⭐ <span th:text="${movie.voteAverage}"></span> | <span th:text="${movie.releaseDate}"></span></p>
+
+      <form th:action="@{/favorites/add}" method="post">
+        <input type="hidden" th:name="id" th:value="${movie.id}" />
+        <input type="hidden" th:name="title" th:value="${movie.title}" />
+        <input type="hidden" th:name="posterPath" th:value="${movie.posterPath}" />
+        <input type="hidden" th:name="releaseDate" th:value="${movie.releaseDate}" />
+        <input type="hidden" th:name="voteAverage" th:value="${movie.voteAverage}" />
+        <button type="submit">❤️ Add to Favorites</button>
+      </form>
+
+    </div>
+  </section>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${movie.title}">Movie Details</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <style>
+    body {
+      background-color: #111;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #000;
+      padding: 15px 30px;
+    }
+
+    .logo {
+      color: #e50914;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: bold;
+    }
+
+    .detail-container {
+      display: flex;
+      flex-direction: row;
+      padding: 40px;
+      gap: 40px;
+    }
+
+    .poster {
+      width: 350px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+
+    .detail-info {
+      max-width: 600px;
+    }
+
+    .detail-info h2 {
+      margin-top: 0;
+    }
+
+    .detail-info p {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    button {
+      background-color: #e50914;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #c40812;
+    }
+  </style>
+</head>
+
+<body>
+
+<nav class="navbar">
+  <div class="logo"><a href="/home" style="text-decoration: none; color: inherit;">SahilFlix</a></div>
+  <div class="nav-links">
+    <a href="/home">Trending</a>
+    <a href="/favorites">Favorites</a>
+  </div>
+</nav>
+
+<main class="detail-container">
+  <img th:src="'https://image.tmdb.org/t/p/w500' + ${movie.posterPath}" th:alt="${movie.title}" class="poster" />
+  <div class="detail-info">
+    <h2 th:text="${movie.title}"></h2>
+    <p><strong>Release Date:</strong> <span th:text="${movie.releaseDate}"></span></p>
+    <p><strong>Rating:</strong> <span th:text="${movie.voteAverage}"></span></p>
+    <p th:text="${movie.overview}"></p>
+
+    <form th:action="@{/favorites/add}" method="post">
+      <input type="hidden" th:name="id" th:value="${movie.id}" />
+      <input type="hidden" th:name="title" th:value="${movie.title}" />
+      <input type="hidden" th:name="posterPath" th:value="${movie.posterPath}" />
+      <input type="hidden" th:name="releaseDate" th:value="${movie.releaseDate}" />
+      <input type="hidden" th:name="voteAverage" th:value="${movie.voteAverage}" />
+      <button type="submit">❤️ Add to Favorites</button>
+    </form>
+  </div>
+</main>
+
+</body>
+</html>
